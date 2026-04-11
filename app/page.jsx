@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Star, ShieldCheck, Truck, Play, Award } from "lucide-react";
+import { ArrowRight, Star, ShieldCheck, Truck, Play, Award, Sparkles } from "lucide-react";
 
 export default function Home() {
   return (
@@ -128,6 +128,63 @@ export default function Home() {
                 <Link href="/about" className="text-zinc-900 font-bold border-b-2 border-amber-600 pb-1 hover:text-amber-600 transition-colors">
                   Learn more about our process
                 </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Visualizer Section */}
+      <section className="py-32 bg-zinc-950 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-20" />
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-600/20 text-amber-500 border border-amber-600/30 text-[10px] font-bold uppercase tracking-widest mb-8">
+                <Sparkles className="w-4 h-4" /> Next-Gen Technology
+              </div>
+              <h2 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight">AI-Powered <br/> <span className="text-amber-500 font-serif italic">Visualization</span></h2>
+              <p className="text-xl text-zinc-400 mb-10 leading-relaxed font-light">
+                Not sure if that sofa fits your room? Use our advanced AI visualizer to see any product in your space instantly. Just upload a photo and let our AI do the magic.
+              </p>
+              <div className="space-y-8">
+                {[
+                  { title: "Instant 3D Placement", desc: "Realistic shadows and lighting integration." },
+                  { title: "Style Harmonization", desc: "AI suggests matching furniture for your existing decor." },
+                  { title: "Virtual Renovation", desc: "Change wall colors and flooring in one click." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-5">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-500 shrink-0 shadow-xl">
+                      <ShieldCheck className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-white text-lg font-bold mb-1">{item.title}</h4>
+                      <p className="text-zinc-500">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="mt-12 px-10 py-5 bg-amber-600 text-white font-bold rounded-full hover:bg-amber-700 transition-all duration-500 flex items-center gap-3 shadow-2xl shadow-amber-600/20">
+                Try AI Visualizer <ArrowRight className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="relative">
+              <div className="aspect-square bg-zinc-900 rounded-[3rem] border border-white/10 overflow-hidden relative group shadow-[0_0_50px_rgba(217,119,6,0.15)]">
+                {/* Simulated Before/After Comparison */}
+                <div className="absolute inset-0">
+                   <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1200&auto=format&fit=crop" className="w-full h-full object-cover opacity-60" alt="Before" />
+                </div>
+                <div className="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-amber-500 z-10 transition-all duration-1000 group-hover:w-full">
+                   <img src="https://images.unsplash.com/photo-1583847268964-b28e50b58b34?q=80&w=1200&auto=format&fit=crop" className="w-[200%] h-full object-cover" alt="After" />
+                   <div className="absolute top-10 left-10 py-2 px-4 bg-amber-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full shadow-lg">AI Generated Vision</div>
+                </div>
+                <div className="absolute bottom-10 right-10 py-2 px-4 bg-white/10 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest rounded-full z-20 border border-white/10">Original Space</div>
+                
+                {/* Scanner animation */}
+                <div className="absolute top-0 bottom-0 left-1/2 w-1 bg-amber-500/50 shadow-[0_0_20px_rgba(245,158,11,0.8)] z-30 group-hover:left-full transition-all duration-1000" />
+                
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-amber-500/10 rounded-full blur-[100px] animate-pulse" />
               </div>
             </div>
           </div>
