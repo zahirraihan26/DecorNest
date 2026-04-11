@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Search, Filter, ArrowRight, Star } from 'lucide-react';
+import { Search, Filter, ArrowRight, Star, Sparkles } from 'lucide-react';
 
 export default function Shop() {
   const products = [
@@ -27,6 +27,46 @@ export default function Shop() {
           <p className="text-lg text-zinc-600 max-w-2xl">
             Explore our curated selection of premium furniture and home decor designed to elevate your living experience.
           </p>
+        </div>
+      </div>
+
+      {/* AI Recommendations Section */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-20">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-3">
+             <div className="w-10 h-10 rounded-xl bg-amber-600/10 border border-amber-600/20 flex items-center justify-center text-amber-600">
+                <Sparkles className="w-5 h-5" />
+             </div>
+             <div>
+                <h2 className="text-xl font-bold text-zinc-900">Recommended for You</h2>
+                <p className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Based on your style preferences</p>
+             </div>
+          </div>
+          <div className="flex gap-2">
+             <button className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 transition-colors">
+                <ArrowRight className="w-4 h-4 rotate-180" />
+             </button>
+             <button className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50 transition-colors">
+                <ArrowRight className="w-4 h-4" />
+             </button>
+          </div>
+        </div>
+        
+        <div className="flex gap-6 overflow-x-auto pb-4 no-scrollbar">
+          {[
+            { id: 101, name: "Celestial Mirror", price: "$299", category: "Decor", image: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=800", rating: 4.9 },
+            { id: 102, name: "Ivory Boucle Chair", price: "$740", category: "Furniture", image: "https://images.unsplash.com/photo-1592078615290-033ee584e277?auto=format&fit=crop&q=80&w=800", rating: 4.8 },
+            { id: 103, name: "Onyx Coffee Table", price: "$520", category: "Furniture", image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=800", rating: 5.0 }
+          ].map((item) => (
+            <div key={item.id} className="min-w-[300px] group cursor-pointer">
+              <div className="relative aspect-video rounded-2xl overflow-hidden mb-4 shadow-sm">
+                <img src={item.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={item.name} />
+                <div className="absolute top-4 left-4 py-1 px-3 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-amber-600 border border-amber-600/20">98% Match</div>
+              </div>
+              <h4 className="font-bold text-zinc-900 group-hover:text-amber-600 transition-colors">{item.name}</h4>
+              <p className="text-sm text-zinc-500">{item.price}</p>
+            </div>
+          ))}
         </div>
       </div>
 
