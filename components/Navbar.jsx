@@ -2,19 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ShoppingCart, Menu, Search, User, X, LayoutDashboard, ArrowRight } from 'lucide-react';
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const isDarkHero = pathname === '/' || pathname === '/about';
+  const isDarkText = !isDarkHero;
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -26,28 +22,16 @@ export default function Navbar() {
 
   return (
     <>
-      <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isScrolled 
-            ? 'py-4' 
-            : 'py-6'
-        }`}
-      >
+      <nav className="absolute top-0 left-0 right-0 z-50 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex justify-between items-center transition-all duration-700 mx-auto ${
-            isScrolled 
-              ? 'bg-white/80 backdrop-blur-2xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[2rem] px-6 py-3 max-w-5xl' 
-              : 'bg-transparent px-4 max-w-7xl'
-          }`}>
+          <div className="flex justify-between items-center mx-auto bg-transparent px-4 max-w-7xl">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="group flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg ${
-                  isScrolled ? 'bg-amber-600 shadow-amber-600/30' : 'bg-amber-600 shadow-amber-600/40'
-                }`}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500 shadow-lg bg-amber-600 shadow-amber-600/40">
                   <span className="text-white font-serif text-xl font-bold">D</span>
                 </div>
-                <span className={`text-2xl font-serif font-bold tracking-tighter ${isScrolled ? 'text-zinc-900' : 'text-white'} transition-colors duration-500`}>
+                <span className={`text-2xl font-serif font-bold tracking-tighter ${isDarkText ? 'text-zinc-900' : 'text-white'} transition-colors duration-500`}>
                   DecorNest
                 </span>
               </Link>
@@ -55,13 +39,13 @@ export default function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-1">
-              <div className={`flex items-center p-1 rounded-full ${isScrolled ? 'bg-zinc-100/50' : 'bg-white/10 backdrop-blur-md'}`}>
+              <div className={`flex items-center p-1 rounded-full ${isDarkText ? 'bg-zinc-100/50' : 'bg-white/10 backdrop-blur-md'}`}>
                 {navLinks.map((link) => (
                   <Link 
                     key={link.name}
                     href={link.href} 
                     className={`relative px-5 py-2 text-sm font-medium tracking-wide rounded-full transition-all duration-300 group ${
-                      isScrolled ? 'text-zinc-600 hover:text-zinc-900 hover:bg-white shadow-sm hover:shadow-md' : 'text-zinc-200 hover:text-white hover:bg-white/10'
+                      isDarkText ? 'text-zinc-600 hover:text-zinc-900 hover:bg-white shadow-sm hover:shadow-md' : 'text-zinc-200 hover:text-white hover:bg-white/10'
                     }`}
                   >
                     {link.name}
@@ -73,29 +57,29 @@ export default function Navbar() {
             {/* Right Side Icons */}
             <div className="hidden md:flex items-center space-x-3">
               <Link href="/dashboard" className={`hidden lg:flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 ${
-                isScrolled ? 'text-zinc-600 hover:text-amber-600 bg-zinc-50 hover:bg-amber-50' : 'text-white bg-white/10 hover:bg-white/20'
+                isDarkText ? 'text-zinc-600 hover:text-amber-600 bg-zinc-50 hover:bg-amber-50' : 'text-white bg-white/10 hover:bg-white/20'
               }`}>
                 <LayoutDashboard className="w-4 h-4" />
                 Admin
               </Link>
-              <div className={`w-px h-6 mx-2 ${isScrolled ? 'bg-zinc-200' : 'bg-white/20'}`} />
+              <div className={`w-px h-6 mx-2 ${isDarkText ? 'bg-zinc-200' : 'bg-white/20'}`} />
               
               <button className={`p-2.5 rounded-full transition-all duration-300 group ${
-                isScrolled ? 'text-zinc-600 hover:bg-zinc-100 hover:text-amber-600' : 'text-white hover:bg-white/10'
+                isDarkText ? 'text-zinc-600 hover:bg-zinc-100 hover:text-amber-600' : 'text-white hover:bg-white/10'
               }`}>
                 <Search className="w-5 h-5 group-hover:scale-110 transition-transform" />
               </button>
               <button className={`p-2.5 rounded-full transition-all duration-300 group ${
-                isScrolled ? 'text-zinc-600 hover:bg-zinc-100 hover:text-amber-600' : 'text-white hover:bg-white/10'
+                isDarkText ? 'text-zinc-600 hover:bg-zinc-100 hover:text-amber-600' : 'text-white hover:bg-white/10'
               }`}>
                 <User className="w-5 h-5 group-hover:scale-110 transition-transform" />
               </button>
               <button className={`relative p-2.5 rounded-full transition-all duration-300 group ${
-                isScrolled ? 'text-zinc-600 hover:bg-zinc-100 hover:text-amber-600' : 'text-white hover:bg-white/10'
+                isDarkText ? 'text-zinc-600 hover:bg-zinc-100 hover:text-amber-600' : 'text-white hover:bg-white/10'
               }`}>
                 <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span className={`absolute top-1 right-1 text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center border-2 transition-colors ${
-                  isScrolled ? 'bg-amber-600 text-white border-white' : 'bg-white text-zinc-900 border-zinc-900'
+                  isDarkText ? 'bg-amber-600 text-white border-transparent' : 'bg-white text-zinc-900 border-zinc-900'
                 }`}>
                   3
                 </span>
@@ -106,7 +90,7 @@ export default function Navbar() {
             <div className="flex md:hidden items-center">
               <button 
                 onClick={() => setMobileMenuOpen(true)}
-                className={`p-2 rounded-xl transition-colors ${isScrolled ? 'text-zinc-800 bg-zinc-100' : 'text-white bg-white/10'}`}
+                className={`p-2 rounded-xl transition-colors ${isDarkText ? 'text-zinc-800 bg-zinc-100' : 'text-white bg-white/10'}`}
               >
                 <Menu className="w-6 h-6" />
               </button>
