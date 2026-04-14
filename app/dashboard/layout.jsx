@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Home, LayoutDashboard, ShoppingBag, Users, Settings, PieChart, Menu, Search, Bell } from 'lucide-react';
+import { Home, LayoutDashboard, ShoppingBag, Users, Settings, PieChart, Menu, Search, Bell, TrendingUp } from 'lucide-react';
 
 export default function DashboardLayout({ children }) {
   return (
@@ -22,6 +22,9 @@ export default function DashboardLayout({ children }) {
           </Link>
           <Link href="/dashboard/analytics" className="flex items-center gap-3 px-4 py-3 text-zinc-500 hover:text-amber-600 hover:bg-amber-50 rounded-xl font-medium transition-colors">
             <PieChart className="w-5 h-5" /> Analytics
+          </Link>
+          <Link href="/dashboard/conversion" className="flex items-center gap-3 px-4 py-3 text-zinc-500 hover:text-amber-600 hover:bg-amber-50 rounded-xl font-medium transition-colors">
+            <TrendingUp className="w-5 h-5" /> Conversion
           </Link>
           <Link href="/dashboard/products" className="flex items-center gap-3 px-4 py-3 text-zinc-500 hover:text-amber-600 hover:bg-amber-50 rounded-xl font-medium transition-colors">
             <ShoppingBag className="w-5 h-5" /> Products
