@@ -29,6 +29,9 @@ export default function DashboardLayout({ children }) {
           <Link href="/dashboard/products" className="flex items-center gap-3 px-4 py-3 text-zinc-500 hover:text-amber-600 hover:bg-amber-50 rounded-xl font-medium transition-colors">
             <ShoppingBag className="w-5 h-5" /> Products
           </Link>
+          <Link href="/dashboard/orders" className="flex items-center gap-3 px-4 py-3 text-zinc-500 hover:text-amber-600 hover:bg-amber-50 rounded-xl font-medium transition-colors">
+            <ShoppingBag className="w-5 h-5" /> Orders
+          </Link>
           <Link href="/dashboard/customers" className="flex items-center gap-3 px-4 py-3 text-zinc-500 hover:text-amber-600 hover:bg-amber-50 rounded-xl font-medium transition-colors">
             <Users className="w-5 h-5" /> Customers
           </Link>
