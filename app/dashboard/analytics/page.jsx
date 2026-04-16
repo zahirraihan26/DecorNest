@@ -8,7 +8,8 @@ import {
   Calendar,
   Download,
   BarChart3,
-  PieChart
+  PieChart,
+  MoreHorizontal
 } from 'lucide-react';
 
 export default function AnalyticsPage() {
@@ -132,7 +133,7 @@ export default function AnalyticsPage() {
                       <div className="w-full relative flex-1 flex items-end rounded-t-sm">
                          <div 
                            className="w-full bg-amber-200 group-hover:bg-amber-500 transition-colors rounded-t-md cursor-pointer relative"
-                           style={{ height: \`\${heightPercent}%\` }}
+                           style={{ height: `${heightPercent}%` }}
                          >
                             <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-zinc-800 text-white text-xs font-bold py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
                               {data.value}k
